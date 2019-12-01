@@ -4,3 +4,5 @@
 
 layout: home
 ---
+
+# The beginning of the blog
