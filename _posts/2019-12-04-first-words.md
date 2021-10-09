@@ -6,5 +6,9 @@ categories: Introduction
 ---
 Hello!
 
-This blog is intended to cover topics on analytics and / or data science.
+These pages are intended to cover topics on:
+- analytics 
+- data science
+- their technical aspects
+
 Stay tuned for content!
