@@ -1,7 +1,9 @@
 ## Overview
-This comes from the ssh config, rather than google of VS Code specifically.
-Type of machine in google cloud?
-This is the *why* of how we have written the config file. 
+Here is a short overview of what is in the config file when 
+connecting to a google cloud machine and why. This info 
+comes from the documentation about the ssh protocol and 
+is not specific to either VS Code or Google Cloud. 
+
 You do not have to understand this unless:
 - you are curious
 - you have hit a snag 
@@ -10,14 +12,15 @@ From the description:
 
 *The SSH protocol (also referred to as Secure Shell) is a method for secure remote login from one computer to another. It provides several alternative options for strong authentication, and it protects the communications security and integrity with strong encryption. It is a secure alternative to the non-protected login protocols (such as telnet, rlogin) and insecure file transfer methods (such as FTP).*
 
-Giben the emphasis on security there are lots of configurations to make the 
+Given the emphasis on security there are lots of configurations to make the 
 commands more secure. You can read about all of them on the
 [Ubuntu page](https://manpages.ubuntu.com/manpages/focal/en/man5/ssh_config.5.html)
 and in the [ssh config page](https://www.ssh.com/academy/ssh/config)
 
 ## Details
 ### Config for instance connection
-You can read about the connection used in the other 
+Here is the connection file we used to connect to Google Cloud.
+We'll walk through what each of those params does.
 ```bash
 Host gcp-vm
     HostName compute.ID
@@ -32,14 +35,26 @@ Host gcp-vm
     User USER_NAME
 ```
 ### HostName
+Can be:
+- numeric IP address
+- a predefined alias or abbreviation given to the host
+You need to figure out what the name of the machine you are connecting to is. 
 ### IdentityFile
+When using a public key authentication you need to specify in this line where the 
+private key is stored on the local machine.
+
 ### CheckHostIP
 If set to yes (the default), ssh(1) will additionally check the host IP address in
 the known_hosts file.  This allows it to detect if a host key changed due to DNS
 spoofing and will add addresses of destination hosts to ~/.ssh/known_hosts in the
 process, regardless of the setting of StrictHostKeyChecking.  If the option is set
 to no, the check will not be executed.
+
 ### HostKeyAlias
+From the documentation - Specifies an alias that should be used instead of the real
+host name when looking up or saving the host key in the host key database files.
+TODO: Check what happens if it is not arround. Can I still connect? 
+
 ### IdentitiesOnly
 Specifies that ssh(1) should only use the configured authentication identity and
 certificate files (either the default files, or those explicitly configured in the
@@ -65,6 +80,7 @@ user has confirmed that is what they really want to do, and ssh will refuse to
 connect to hosts whose host key has changed.  The host keys of known hosts will be
 verified automatically in all cases.
 ### UserKnownHostsFile
+
 ### ProxyCommand
 ### ProxyUseFdpass
 - user-specified file descriptor

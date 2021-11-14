@@ -100,12 +100,12 @@ The path_to_google_cloud_executable can look something like C:/Program Files/Goo
 ```bash
 Host gcp-vm
     HostName compute.ID
-    IdentityFile the_path_to_the_ssh_google_compute_engine_file
+    IdentityFile the_path_to_the_ssh_google_compute_engine_file_locally
     CheckHostIP no
     HostKeyAlias compute.ID
     IdentitiesOnly yes
     StrictHostKeyChecking yes
-    UserKnownHostsFile path_to_ssh_google_compute_know_hosts_file
+    UserKnownHostsFile path_to_ssh_google_compute_know_hosts_file_locally
     ProxyCommand path_to_python_executable -S "path_to_google_cloud_executable" compute start-iap-tunnel INSTANCE_NAME %p --listen-on-stdin --project=PROJECT_NAME --zone=ZONE --verbosity=warning 
     ProxyUseFdpass no
     User USER_NAME
