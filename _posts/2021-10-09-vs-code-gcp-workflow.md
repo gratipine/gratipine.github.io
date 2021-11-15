@@ -143,3 +143,18 @@ Delete the config files and keys, restart Visual Studio Code, restart the proces
 It is possible that something got corrupted / changed from the time you 
 created the keys and the time you were trying to use them. Restart from the 
 Connect to the instance via a IAP tunnel.
+
+#### posix_spawnp: No such file or directory
+Different things could have happened.
+There might be:
+
+- a problem with your OpenSSH (if you are on windows).
+You can see a few answers 
+[here](https://stackoverflow.com/questions/65059250/ssh-and-scp-failed-with-createprocessw-failed-error2-posix-spawn-no-such-file)
+and 
+[here](https://github.com/PowerShell/Win32-OpenSSH/issues/1185)
+
+- your python file that you reference in the ProxyCommand line is not actually there.
+In this case pointto the correct one and your problem is solved.
+
+- other problems.
