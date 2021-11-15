@@ -25,20 +25,22 @@ We'll walk through what each of those params does.
 Host gcp-vm
     HostName compute.ID
     IdentityFile the_path_to_the_ssh_google_compute_engine_file
-    CheckHostIP no
+    CheckHostIP yes
     HostKeyAlias compute.ID
     IdentitiesOnly yes
     StrictHostKeyChecking yes
     UserKnownHostsFile path_to_ssh_google_compute_know_hosts_file
     ProxyCommand path_to_python_executable -S "path_to_google_cloud_executable" compute start-iap-tunnel INSTANCE_NAME %p --listen-on-stdin --project=PROJECT_NAME --zone=ZONE --verbosity=warning 
-    ProxyUseFdpass no
     User USER_NAME
 ```
 ### HostName
 Can be:
-- numeric IP address
+- numeric IP address (an external one)
 - a predefined alias or abbreviation given to the host
 You need to figure out what the name of the machine you are connecting to is. 
+In the google instance example the easiest way to get the server name of the
+instance is to connect using the name you gave it upon creation and a IAP tunnel.
+
 ### IdentityFile
 When using a public key authentication you need to specify in this line where the 
 private key is stored on the local machine.
@@ -79,15 +81,21 @@ default), new host keys will be added to the user known host files only after th
 user has confirmed that is what they really want to do, and ssh will refuse to
 connect to hosts whose host key has changed.  The host keys of known hosts will be
 verified automatically in all cases.
+
 ### UserKnownHostsFile
+Can be one or more. If more than one, separate them by white space.
+They hold keys for each host. 
 
 ### ProxyCommand
-### ProxyUseFdpass
-- user-specified file descriptor
+Specifies what command you are using to connect to the server. Can be just "ssh" or 
+something more involved, like the case of the google cloud instance.
 
 ### User
+What user you are connecting as. If you type user123, the machine on the other side will
+expect to have an account for user123. If that account does not exist, then the connection
+will fail
 
-Sources:
+## Sources:
 - https://www.ssh.com/academy/ssh/protocol
 - https://groups.google.com/g/opensshunixdev/c/GvhS3DrjQTI
 - https://manpages.ubuntu.com/manpages/focal/en/man5/ssh_config.5.html
