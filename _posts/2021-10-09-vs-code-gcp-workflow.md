@@ -1,9 +1,9 @@
 ---
-layout: page
 title: "How to get VS Code working with GCP"
 date: 2021-10-09 19:59:00 -0000
 categories: how-to
 ---
+
 ## Overview
 There are multiple ways to do data science. 
 This is true both in the case of analysis (lots of ways to answer your questions) as it is in terms of workflows.
@@ -19,7 +19,7 @@ to a cloud provider for the code execution.
 Here we will cover how to structure your workflow so that the code executes in a Google Cloud instance
 and is written within Visual Studio Code.
 
-**WARNING:** Just because it is written on the internet does not mean that it is allowed in your school or organization.
+**WARNING:** Just because it is written on the internet does not mean that it is safe or allowed in your school or organization.
 Please check for security risks before executing. Especially check the configs at the end - it is possible that some
 options leave you vulnerable to attacks.
 
@@ -100,12 +100,12 @@ The path_to_google_cloud_executable can look something like C:/Program Files/Goo
 ```bash
 Host gcp-vm
     HostName compute.ID
-    IdentityFile the_path_to_the_ssh_google_compute_engine_file
+    IdentityFile the_path_to_the_ssh_google_compute_engine_file_locally
     CheckHostIP no
     HostKeyAlias compute.ID
     IdentitiesOnly yes
     StrictHostKeyChecking yes
-    UserKnownHostsFile path_to_ssh_google_compute_know_hosts_file
+    UserKnownHostsFile path_to_ssh_google_compute_know_hosts_file_locally
     ProxyCommand path_to_python_executable -S "path_to_google_cloud_executable" compute start-iap-tunnel INSTANCE_NAME %p --listen-on-stdin --project=PROJECT_NAME --zone=ZONE --verbosity=warning 
     ProxyUseFdpass no
     User USER_NAME
@@ -143,3 +143,18 @@ Delete the config files and keys, restart Visual Studio Code, restart the proces
 It is possible that something got corrupted / changed from the time you 
 created the keys and the time you were trying to use them. Restart from the 
 Connect to the instance via a IAP tunnel.
+
+#### posix_spawnp: No such file or directory
+Different things could have happened.
+There might be:
+
+- a problem with your OpenSSH (if you are on windows).
+You can see a few answers 
+[here](https://stackoverflow.com/questions/65059250/ssh-and-scp-failed-with-createprocessw-failed-error2-posix-spawn-no-such-file)
+and 
+[here](https://github.com/PowerShell/Win32-OpenSSH/issues/1185)
+
+- your python file that you reference in the ProxyCommand line is not actually there.
+In this case pointto the correct one and your problem is solved.
+
+- other problems.
