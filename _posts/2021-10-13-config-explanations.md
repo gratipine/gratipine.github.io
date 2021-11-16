@@ -1,7 +1,8 @@
 ## Overview
 Here is a short overview of what is in the config file when 
-connecting to a google cloud machine and why. This info 
-comes from the documentation about the ssh protocol and 
+connecting to a google cloud machine and why 
+([post here]({{ site.baseurl }}{% link _posts/2021-10-09-vs-code-gcp-workflow.md %})).
+This info comes from the documentation about the ssh protocol and 
 is not specific to either VS Code or Google Cloud. 
 
 You do not have to understand this unless:
@@ -37,6 +38,7 @@ Host gcp-vm
 Can be:
 - numeric IP address (an external one)
 - a predefined alias or abbreviation given to the host
+
 You need to figure out what the name of the machine you are connecting to is. 
 In the google instance example the easiest way to get the server name of the
 instance is to connect using the name you gave it upon creation and a IAP tunnel.
@@ -55,14 +57,15 @@ to no, the check will not be executed.
 ### HostKeyAlias
 From the documentation - Specifies an alias that should be used instead of the real
 host name when looking up or saving the host key in the host key database files.
-TODO: Check what happens if it is not arround. Can I still connect? 
+You don't have to set this up, but it can help if you have multiple machines you 
+are connecting to, such as work, projects, school, etc.
 
 ### IdentitiesOnly
 Specifies that ssh(1) should only use the configured authentication identity and
 certificate files (either the default files, or those explicitly configured in the
 ssh_config files or passed on the ssh(1) command-line), even if ssh-agent(1) or a
 PKCS11Provider or SecurityKeyProvider offers more identities.  The argument to this
-keyword must be yes or no (the default).  This option is intended for situaasdtions
+keyword must be yes or no (the default).  This option is intended for situations
 where ssh-agent offers many different identities.
 
 ### StrictHostKeyChecking
@@ -93,9 +96,8 @@ something more involved, like the case of the google cloud instance.
 ### User
 What user you are connecting as. If you type user123, the machine on the other side will
 expect to have an account for user123. If that account does not exist, then the connection
-will fail
+will fail.
 
 ## Sources:
-- https://www.ssh.com/academy/ssh/protocol
-- https://groups.google.com/g/opensshunixdev/c/GvhS3DrjQTI
-- https://manpages.ubuntu.com/manpages/focal/en/man5/ssh_config.5.html
+- [SSH documentation](https://www.ssh.com/academy/ssh/protocol)
+- [Ubuntu documentation](https://manpages.ubuntu.com/manpages/focal/en/man5/ssh_config.5.html)

@@ -1,9 +1,9 @@
 ---
-layout: page
 title: "How to get VS Code working with GCP"
 date: 2021-10-09 19:59:00 -0000
 categories: how-to
 ---
+
 ## Overview
 There are multiple ways to do data science. 
 This is true both in the case of analysis (lots of ways to answer your questions) as it is in terms of workflows.
@@ -19,7 +19,7 @@ to a cloud provider for the code execution.
 Here we will cover how to structure your workflow so that the code executes in a Google Cloud instance
 and is written within Visual Studio Code.
 
-**WARNING:** Just because it is written on the internet does not mean that it is allowed in your school or organization.
+**WARNING:** Just because it is written on the internet does not mean that it is safe or allowed in your school or organization.
 Please check for security risks before executing. Especially check the configs at the end - it is possible that some
 options leave you vulnerable to attacks.
 
