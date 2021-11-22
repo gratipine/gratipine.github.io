@@ -20,7 +20,6 @@
 # in the templates via {{ site.myvariable }}.
 
 title: Down the Data Science Rabbit Hole
-email: your-email@example.com
 description: >- # this means to ignore newlines until "baseurl:"
   Helpful pages and analysis related to data science work
 baseurl: "" # the subpath of your site, e.g. /blog
@@ -29,11 +28,9 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  gratipine
 
 # Build settings
-#theme: minima
-remote_theme: pages-themes/cayman@v0.2.0
+theme: minima
 plugins:
   - jekyll-feed
-  - jekyll-remote-theme
 
 # Exclude from processing.
 # The following items will not be processed, by default.
