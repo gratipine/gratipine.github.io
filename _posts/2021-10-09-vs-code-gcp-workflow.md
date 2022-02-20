@@ -12,12 +12,9 @@ There are two components of a workflow:
 - where you write the code
 - where the code gets executed.
 
-For a lot of simple tasks you can execute locally and write in whichever editor (including 
-Notepad) you feel most comfortable using. For heavier processing you might want to consider switching 
-to a cloud provider for the code execution.
+For a lot of simple tasks you can execute locally and write in whichever editor (including Notepad) you feel most comfortable using. For heavier processing you might want to consider switching to a cloud provider for the code execution.
 
-Here we will cover how to structure your workflow so that the code executes in a Google Cloud instance
-and is written within Visual Studio Code.
+Here we will cover how to structure your workflow so that the code executes in a Google Cloud instance and is written within Visual Studio Code.
 
 **WARNING:** Just because it is written on the internet does not mean that it is safe or allowed in your school or organization.
 Please check for security risks before executing. Especially check the configs at the end - it is possible that some
