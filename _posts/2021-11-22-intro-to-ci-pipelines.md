@@ -26,8 +26,42 @@ You can read a bit more on the philosophy of continuous integration [here](https
 In github the CI / CD actions can be performed using a tab called Actions. The tab is visible when you are at the root of your repository. Once you click on it there are several categories of actions you can perform. You are looking for Continuous integration. Depending on the structure of your repo and what languages you use you might have to click on View all to be able to see the one that fits your purposes. Assuming you are working with Python, you could do a Pylint action. If you click on Configure you will be taken to a page where a  
 
 ### The script way
+To use a workflow github expects a file like below at this address - .github/worflows/filename.yml .
 
-## project showing how it works
+The file below specifies that an action called Pylint will run every time you push to the directory. It will run against the latest ubuntu image available on github. It will test against three versions of Python - 3.8, 3.9 and 3.10. For each of the versions it will install pylint and run it on any python file within the repo.
 
-## parting words
-- this is just the integration prt, does not mean that we are done
+```yml
+name: Pylint
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.8", "3.9", "3.10"]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pylint
+    - name: Analysing the code with pylint
+      run: |
+        pylint $(git ls-files '*.py')
+```
+## Example project
+You can find an example project with a pipeline [here](https://github.com/gratipine/ci_example). It contains?
+
+## Conclusion
+This is just an example of running some automatic checks on the code. There are many more things that you can do with the code, including integarate it with more pieces of code and automatically deploy to a place of your choice. 
+
+## Sources
+- [Github docs](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions)
+- [Atlassian explanations of github](https://www.atlassian.com/continuous-delivery/continuous-integration)
+- [Example Python repo with workflow set up](https://github.com/gratipine/ci_example)
