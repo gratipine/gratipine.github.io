@@ -1,6 +1,6 @@
 ---
 title: "How to create a python CI pipeline on Github"
-date: 2021-11-22 19:59:00 -0000
+date: 2022-03-12 19:59:00 -0000
 categories: how-to
 # https://www.pexels.com/photo/person-using-silver-macbook-pro-1181467/
 ---
