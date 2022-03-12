@@ -1,5 +1,5 @@
 ---
-title: "How to get VS Code working with GCP"
+title: "Config explanations for VS code"
 date: 2021-10-13 19:59:00 -0000
 categories: how-to
 # https://www.pexels.com/photo/person-using-gray-laptop-3861964/
