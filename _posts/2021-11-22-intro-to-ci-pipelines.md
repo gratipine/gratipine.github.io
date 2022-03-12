@@ -2,16 +2,17 @@
 title: "How to create a python CI pipeline on Github"
 date: 2021-11-22 19:59:00 -0000
 categories: how-to
+# https://www.pexels.com/photo/person-using-silver-macbook-pro-1181467/
 ---
 
 ## Overview
-CI pipelines are a part of the famous duo CI/CD. The CI part stands for continuous intergation, meaning that there are automatic ways to integrate code from different developers in a single software product. This leads to faster development and code that is more robust. 
+CI pipelines are a part of the famous duo CI/CD. The CI part stands for continuous integration, meaning that there are automatic ways to integrate code from different developers in a single software product. This leads to faster development and code that is more robust. 
 
 It works by running automatic tests and checks on the code as soon as you push. This can be configured so that the checks are run before you commit as well. The checks could be:
 - unit tests
 - linting
 - checks there are no passwords in the code
-- mainainability checks
+- maintainability checks
 - part of a larger suite like [SonarQube](https://www.sonarqube.org/), for example.
 
 ## Why we do this
@@ -21,14 +22,14 @@ On a personal scale I do this even when working alone because automatic checks m
 
 You can read a bit more on the philosophy of continuous integration [here](https://www.atlassian.com/continuous-delivery/continuous-integration).
 
-## The CI part on github
+## CI on github
 ### The UI way
 In github the CI / CD actions can be performed using a tab called Actions. The tab is visible when you are at the root of your repository. Once you click on it there are several categories of actions you can perform. You are looking for Continuous integration. Depending on the structure of your repo and what languages you use you might have to click on View all to be able to see the one that fits your purposes. Assuming you are working with Python, you could do a Pylint action. If you click on Configure you will be taken to a page where you can edit a yml file like the one below.
 
 ### The script way
-To use a workflow github expects a file like below at this address - .github/worflows/filename.yml .
+To use a workflow github expects a file like below at this address - .github/workflows/filename.yml .
 
-The file below specifies that an action called Pylint will run every time you push to the directory. It will run against the latest ubuntu image available on github. It will test against three versions of Python - 3.8, 3.9 and 3.10. For each of the versions it will install pylint and run it on any python file within the repo.
+The file below specifies that an action called Pylint will run every time you push to the directory. For example, this one will run against the latest ubuntu image available on github. It will also do tests against three versions of Python - 3.8, 3.9 and 3.10. For each of the versions it will install pylint and run it on any python file within the repo.
 
 #### Specifying what triggers the workflow
 There are various settings for when the checks (and other actions) can run:
@@ -43,6 +44,8 @@ on:
     types: [opened, reopened]
 ```
 #### A script for linting
+You can also see it as a github gist [here](https://gist.github.com/gratipine/ff13a64bc884669179b24488c06ce4dd).
+
 ```yml
 # Name of the action. This will show up when it is being run as a part of a workflow.
 name: Pylint
@@ -76,10 +79,10 @@ jobs:
         pylint $(git ls-files '*.py')
 ```
 ## Example project
-You can find an example project with a pipeline [here](https://github.com/gratipine/ci_example). It contains?
+You can find an example project with a pipeline [here](https://github.com/gratipine/ci_example). It contains a similar pipeline, with a slightly different environment set up and an example of how to do tests. In [this page](https://github.com/gratipine/ci_example/actions) you can see it took me 7 tries of doing silly things before the pipeline finally passed. 
 
 ## Conclusion
-This is just an example of running some automatic checks on the code. There are many more things that you can do with the code, including integarate it with more pieces of code and automatically deploy to a place of your choice. 
+This is just an example of running some automatic checks on the code. There are many more things that you can do with the code, including integrate it with more repos and automatically deploy to a place of your choice. 
 
 ## Sources
 - [Github docs](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions)
