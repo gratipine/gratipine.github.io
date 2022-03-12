@@ -1,5 +1,5 @@
 ---
-title: "How to do a python CI pipeline on Github"
+title: "How to create a python CI pipeline on Github"
 date: 2021-11-22 19:59:00 -0000
 categories: how-to
 ---
@@ -7,7 +7,7 @@ categories: how-to
 ## Overview
 CI pipelines are a part of the famous duo CI/CD. The CI part stands for continuous intergation, meaning that there are automatic ways to integrate code from different developers in a single software product. This leads to faster development and code that is more robust. 
 
-It works by running automatic tests and checks on the code as soon as you push (or try to commit, depends on configurations). The checks could be:
+It works by running automatic tests and checks on the code as soon as you push. This can be configured so that the checks are run before you commit as well. The checks could be:
 - unit tests
 - linting
 - checks there are no passwords in the code
@@ -30,7 +30,7 @@ To use a workflow github expects a file like below at this address - .github/wor
 
 The file below specifies that an action called Pylint will run every time you push to the directory. It will run against the latest ubuntu image available on github. It will test against three versions of Python - 3.8, 3.9 and 3.10. For each of the versions it will install pylint and run it on any python file within the repo.
 
-#### When the workflow will run
+#### Specifying what triggers the workflow
 There are various settings for when the checks (and other actions) can run:
 - on push
 - when opening or editing a pull request
@@ -42,7 +42,6 @@ on:
   pull_request:
     types: [opened, reopened]
 ```
-
 #### A script for linting
 ```yml
 # Name of the action. This will show up when it is being run as a part of a workflow.
@@ -53,21 +52,26 @@ on: [push]
 
 jobs:
   build:
+  # what platform the workflow runs on
     runs-on: ubuntu-latest
     strategy:
       matrix:
+        # list of Python versions we will test against
         python-version: ["3.8", "3.9", "3.10"]
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
+        # set up the python environment
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
+      # install the python packages needed
       run: |
         python -m pip install --upgrade pip
         pip install pylint
     - name: Analysing the code with pylint
+     # lint all the the python files
       run: |
         pylint $(git ls-files '*.py')
 ```
