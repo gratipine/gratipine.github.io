@@ -1,6 +1,14 @@
+---
+title: "Config explanations for VS code"
+date: 2021-10-13 19:59:00 -0000
+categories: how-to
+# https://www.pexels.com/photo/person-using-gray-laptop-3861964/
+# ![Photo by ThisIsEngineering from Pexels](./../../../../assets/2021-10-13.jpg)
+---
+
 ## Overview
-Here is a short overview of what is in the config file when 
-connecting to a google cloud machine and why 
+
+Here is a short overview of what is in the config file when connecting to a google cloud machine and why 
 ([post here]({{ site.baseurl }}{% link _posts/2021-10-09-vs-code-gcp-workflow.md %})).
 This info comes from the documentation about the ssh protocol and 
 is not specific to either VS Code or Google Cloud. 
@@ -14,9 +22,9 @@ From the description:
 *The SSH protocol (also referred to as Secure Shell) is a method for secure remote login from one computer to another. It provides several alternative options for strong authentication, and it protects the communications security and integrity with strong encryption. It is a secure alternative to the non-protected login protocols (such as telnet, rlogin) and insecure file transfer methods (such as FTP).*
 
 Given the emphasis on security there are lots of configurations to make the 
-commands more secure. You can read about all of them on the
+connections more secure. You can read about all of them on the
 [Ubuntu page](https://manpages.ubuntu.com/manpages/focal/en/man5/ssh_config.5.html)
-and in the [ssh config page](https://www.ssh.com/academy/ssh/config)
+and in the [ssh config page](https://www.ssh.com/academy/ssh/config).
 
 ## Details
 ### Config for instance connection
@@ -69,7 +77,7 @@ keyword must be yes or no (the default).  This option is intended for situations
 where ssh-agent offers many different identities.
 
 ### StrictHostKeyChecking
-If this flag is set to yes, ssh(1) will never automatically add host keys to theasd
+If this flag is set to yes, ssh(1) will never automatically add host keys to the
 ~/.ssh/known_hosts file, and refuses to connect to hosts whose host key has changed.
 This provides maximum protection against man-in-the-middle (MITM) attacks, though it
 can be annoying when the /etc/ssh/ssh_known_hosts file is poorly maintained or when
